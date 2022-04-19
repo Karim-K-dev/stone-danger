@@ -3,6 +3,7 @@ using Core.Components;
 using Core.Commands.Handlers;
 using Core.Commands;
 using UnityEngine;
+using Zenject;
 
 namespace Core
 {
@@ -21,11 +22,11 @@ namespace Core
 
         public void OnCommand(ICommand command) => _commandHandler.OnCommand(command);
 
-        public void Construct()
+        [Inject]
+        public void Construct(DiContainer container)
         {
-            var commandHandler = new ComponentsHandler();
-            commandHandler.Construct(_components);
-            _commandHandler = commandHandler;
+            container.Inject(_components);
+            container.Inject(_commandHandler);
         }
     }
 }

@@ -2,7 +2,8 @@
     "name": "Core",
     "rootNamespace": "",
     "references": [
-        "Textus.SerializeReferenceUI"
+        "Textus.SerializeReferenceUI",
+        "Zenject"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

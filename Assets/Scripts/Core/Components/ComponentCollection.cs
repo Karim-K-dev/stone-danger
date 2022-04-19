@@ -6,6 +6,7 @@ using Core.Commands;
 using Core.Commands.Extensions;
 using Core.Commands.Handlers;
 using UnityEngine;
+using Zenject;
 
 namespace Core.Components
 {
@@ -23,6 +24,15 @@ namespace Core.Components
         public IEnumerator<IComponent> GetEnumerator() => _components.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => _components.GetEnumerator();
+
+        [Inject]
+        private void Construct(DiContainer container)
+        {
+            foreach (var component in _components)
+            {
+                container.Inject(component);
+            }
+        }
 
         public void OnCommand(ICommand command)
         {
